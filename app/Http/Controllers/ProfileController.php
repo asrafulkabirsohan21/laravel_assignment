@@ -13,12 +13,22 @@ class ProfileController extends Controller
         $age = "75";
 
         $data = [
-            'id' => $id,
-            'name' => $name,
-            'age' => $age,
+            "id" => $id,
+            "name" => $name,
+            "age" => $age,
         ];
 
-        return response()->json($data, 200)
-            ->withCookie(cookie('access_token', '123-XYZ', 1, '/', $_SERVER['SERVER_NAME'], false, true));
+       
+        $cookieName = 'access_token';
+        $cookieValue = '123-XYZ';
+        $cookieMinutes = 1;
+        $cookiePath = '/';
+        $cookieDomain = $_SERVER['SERVER_NAME'];
+        $cookieSecure = false;
+        $cookieHttpOnly = true;
+
+        $cookie = cookie($cookieName, $cookieValue, $cookieMinutes, $cookiePath, $cookieDomain, $cookieSecure, $cookieHttpOnly);
+
+        return response()->json($data, 200)->cookie($cookie);
     }
 }
