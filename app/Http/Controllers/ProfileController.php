@@ -17,18 +17,16 @@ class ProfileController extends Controller
             "name" => $name,
             "age" => $age,
         ];
+        $name = 'access_token';
+        $value = '123-XYZ';
+        $minutes = 1;
+        $path = '/';
+        $domain = $_SERVER['SERVER_NAME'];
+        $secure = false;
+        $httpOnly = true;
 
-       
-        $cookieName = 'access_token';
-        $cookieValue = '123-XYZ';
-        $cookieMinutes = 1;
-        $cookiePath = '/';
-        $cookieDomain = $_SERVER['SERVER_NAME'];
-        $cookieSecure = false;
-        $cookieHttpOnly = true;
 
-        $cookie = cookie($cookieName, $cookieValue, $cookieMinutes, $cookiePath, $cookieDomain, $cookieSecure, $cookieHttpOnly);
-
+        $cookie = cookie($name, $value, $minutes, $path, $domain, $secure, $httpOnly);
         return response()->json($data, 200)->cookie($cookie);
     }
 }
